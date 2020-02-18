@@ -19,7 +19,7 @@ import 'firebase/firestore';
 })
 export class AppComponent  {
   name = 'Angular';
-  title = 'Tour of Heroes';
+  title = 'Resultados de pacientes';
   items: Observable<any[]>;
   
   /* constructor(firestore: AngularFirestore) {
