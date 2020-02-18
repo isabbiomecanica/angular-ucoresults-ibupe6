@@ -6,6 +6,15 @@ import { Paciente } from './paciente';
 
 import { MessageService } from './message.service';
 
+
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import 'rxjs/add/operator/map';
+import 'firebase/firestore';
+
+
 export const PACIENTES: Paciente[] = [
   { id: 11, name: 'Dr Nice' },
   { id: 12, name: 'Narco' },
@@ -25,7 +34,22 @@ export const PACIENTES: Paciente[] = [
 })
 export class PacienteService {
 
-  constructor(private messageService: MessageService) { }
+  items: Observable<any[]>;
+  itemsRef: AngularFireList<any>;
+  items: Observable<any[]>;
+
+
+  constructor(private messageService: MessageService, public afd: AngularFireDatabase) {
+    this.itemsRef = afd.list('Usuarios');
+    // Use snapshotChanges().map() to store the key
+    console.log("Listado");
+    this.items = this.itemsRef.snapshotChanges();
+      for (let elemento in this.items)
+      {
+        console.log("Elemento");
+        console.log(elemento);
+      }
+   }
 
   getPacientes(): Observable<Paciente[]> {
     // TODO: send the message _after_ fetching the heroes
@@ -39,5 +63,6 @@ export class PacienteService {
   this.messageService.add(`PacienteService: fetched paciente id=${id}`);
   return of(PACIENTES.find(paciente => paciente.id === id));
   }
+
 
 }
