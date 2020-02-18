@@ -43,12 +43,19 @@ export class PacienteService {
     this.itemsRef = afd.list('Usuarios');
     // Use snapshotChanges().map() to store the key
     console.log("Listado");
-    this.items = this.itemsRef.snapshotChanges();
-      for (let elemento in this.items)
+    
+
+      
+
+
+    this.items = this.itemsRef.snapshotChanges().map(changes => {
+      console.log(changes)
+      for (let elemento in changes)
       {
         console.log("Elemento");
         console.log(elemento);
       }
+    });
    }
 
   getPacientes(): Observable<Paciente[]> {
