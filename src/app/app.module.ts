@@ -24,6 +24,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PacientesComponent } from './pacientes/pacientes.component';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
                   AngularFireModule.initializeApp(environment.firebase),
                   AngularFireDatabaseModule ],
   declarations: [ AppComponent, HelloComponent, HeroesComponent, 
-                  HeroDetailComponent, MessagesComponent, DashboardComponent],
+                  HeroDetailComponent, MessagesComponent, DashboardComponent, PacientesComponent],
                  // providers: [AngularFirestore],
   bootstrap:    [ AppComponent ]
 })
