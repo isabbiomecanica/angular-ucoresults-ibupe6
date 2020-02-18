@@ -1,4 +1,4 @@
 export interface Paciente {
-    id: string;
+    id: number;
   name: string;
 }

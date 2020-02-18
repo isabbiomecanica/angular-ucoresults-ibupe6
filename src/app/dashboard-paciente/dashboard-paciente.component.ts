@@ -8,7 +8,7 @@ import { PacienteService } from '../paciente.service';
   styleUrls: [ './dashboard-paciente.component.css' ]
 })
 export class DashboardPacienteComponent implements OnInit {
-  heroes: Paciente[] = [];
+  pacientes: Paciente[] = [];
 
   constructor(private pacienteService: PacienteService) { }
 
