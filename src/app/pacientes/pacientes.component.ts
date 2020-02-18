@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
+import { Paciente } from '../paciente';
 // import { HEROES } from '../mock-heroes';
 
-import { HeroService } from '../hero.service';
+import { PacienteService } from '../paciente.service';
 import { MessageService } from '../message.service';
 
 
 
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  selector: 'app-pacientes',
+  templateUrl: './pacientes.component.html',
+  styleUrls: ['./pacientes.component.css']
   
 })
-export class HeroesComponent implements OnInit {
-  heroes: Hero[];
+export class PacientesComponent implements OnInit {
+  pacientes: Paciente[];
 
-  constructor(private heroService: HeroService) { }
+  constructor(private pacienteService: PacienteService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getPacientes();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-    .subscribe(heroes => this.heroes = heroes);
+  getPacientes(): void {
+    this.pacienteService.getPacientes()
+    .subscribe(pacientes => this.pacientes = pacientes);
   }
 }
