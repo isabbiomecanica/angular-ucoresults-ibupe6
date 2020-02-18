@@ -1,34 +1,34 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Hero } from '../hero';
+import { Paciente } from '../paciente';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { HeroService }  from '../hero.service';
+import { PacienteService }  from '../paciente.service';
 
 @Component({
-  selector: 'app-hero-detail',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: ['./hero-detail.component.css']
+  selector: 'app-paciente-detail',
+  templateUrl: './paciente-detail.component.html',
+  styleUrls: ['./paciente-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit {
+export class PacienteDetailComponent implements OnInit {
 
-  @Input() hero: Hero;
+  @Input() paciente: Paciente;
   
  constructor(
   private route: ActivatedRoute,
-  private heroService: HeroService,
+  private pacienteService: PacienteService,
   private location: Location
 ) {}
 
 ngOnInit(): void {
-  this.getHero();
+  this.getPaciente();
 }
 getHero(): void {
   const id = +this.route.snapshot.paramMap.get('id');
-  this.heroService.getHero(id)
-    .subscribe(hero => this.hero = hero);
+  this.pacienteService.getPaciente(id)
+    .subscribe(paciente => this.paciente = paciente);
 }
 
 goBack(): void {
