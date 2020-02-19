@@ -39,7 +39,7 @@ export class PacienteService {
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
 
-  Dato : datoPaciente[];
+  Dato : Paciente[];
 
   constructor(private messageService: MessageService, public afd: AngularFireDatabase) {
     this.itemsRef = afd.list('Usuarios');
@@ -53,22 +53,24 @@ export class PacienteService {
     
     this.itemsRef.snapshotChanges().subscribe(data => { 
       this.Dato = [];
-      console.log("-Dato-");
-      console.log(data.length);
+      //console.log("-Dato-");
+      //console.log(data.length);
       data.forEach(item => {
-        console.log("-Dato-2");
+        // console.log("-Dato-2");
+        tempPaciente.id = 1;
+        tempPaciente.name = item.payload;
         //let a = item.payload.toJSON(); 
         //a['$key'] = item.key;
-        //this.Dato.push(a as App);
+        this.Dato.push(tempPaciente as Paciente);
       })
     })
 
     
-    
+    console.log(this.Dato)
 
       
 
-
+/*
     this.items = this.itemsRef.snapshotChanges().map(changes => {
       console.log(changes)
       for (let elemento in changes)
@@ -76,7 +78,7 @@ export class PacienteService {
         console.log("Elemento");
         console.log(elemento);
       }
-    });
+    });*/
    }
 
   getPacientes(): Observable<Paciente[]> {
