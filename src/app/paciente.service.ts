@@ -15,7 +15,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
 import 'firebase/firestore';
 
-
+// export const PACIENTES: Paciente[] = [
 export const PACIENTES: Paciente[] = [
   { id: 11, name: 'Dr Nice' },
   { id: 12, name: 'Narco' },
@@ -29,6 +29,7 @@ export const PACIENTES: Paciente[] = [
   { id: 20, name: 'Tornado' }
 ];
 
+// export Dato: Paciente[];
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +40,7 @@ export class PacienteService {
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
 
-  Dato : Paciente[];
+   Dato : Paciente[];
 
   constructor(private messageService: MessageService, public afd: AngularFireDatabase) {
     this.itemsRef = afd.list('Usuarios');
@@ -63,13 +64,14 @@ export class PacienteService {
         //let a = item.payload.toJSON(); 
         //a['$key'] = item.key;
         this.Dato.push(tempPaciente as Paciente);
-        console.log(tempPaciente);
-        console.log(this.Dato.length);
+       // console.log(tempPaciente);
+       // console.log(this.Dato.length);
       })
+      console.log(this.Dato.length);
     })
 
     
-    console.log(this.Dato);
+   //console.log(this.Dato.length);
 
       
 
