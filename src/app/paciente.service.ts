@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Paciente } from './paciente';
+import { datoPaciente } from './datopaciente';
 
 import { MessageService } from './message.service';
 
@@ -38,27 +39,30 @@ export class PacienteService {
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
 
-  Dato  
+  Dato : datoPaciente[];
 
   constructor(private messageService: MessageService, public afd: AngularFireDatabase) {
     this.itemsRef = afd.list('Usuarios');
     // Use snapshotChanges().map() to store the key
     console.log("Listado");
-    this.itemsRef=this.afd.list('usuarios');
+    this.itemsRef=this.afd.list('/Usuarios');
 
     // Llamamos los datos desde Firebase e iteramos los datos con data.ForEach y por
     // último pasamos los datos a JSON
  
     this.itemsRef.snapshotChanges().subscribe(data => { 
       this.Dato = [];
+      console.log("-Dato-");
+      console.log(data.length);
       data.forEach(item => {
-        let a = item.payload.toJSON(); 
-        a['$key'] = item.key;
-        this.Dato.push(a as App);
+        console.log("-Dato-2");
+        //let a = item.payload.toJSON(); 
+        //a['$key'] = item.key;
+        //this.Dato.push(a as App);
       })
     })
 
-    console.log(this.Dato);
+    
     
 
       
