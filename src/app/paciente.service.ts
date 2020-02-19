@@ -38,11 +38,27 @@ export class PacienteService {
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
 
+  Dato  
 
   constructor(private messageService: MessageService, public afd: AngularFireDatabase) {
     this.itemsRef = afd.list('Usuarios');
     // Use snapshotChanges().map() to store the key
     console.log("Listado");
+    this.itemsRef=this.afd.list('usuarios');
+
+    // Llamamos los datos desde Firebase e iteramos los datos con data.ForEach y por
+    // último pasamos los datos a JSON
+ 
+    this.itemsRef.snapshotChanges().subscribe(data => { 
+      this.Dato = [];
+      data.forEach(item => {
+        let a = item.payload.toJSON(); 
+        a['$key'] = item.key;
+        this.Dato.push(a as App);
+      })
+    })
+
+    console.log(this.Dato);
     
 
       
