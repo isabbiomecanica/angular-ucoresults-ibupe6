@@ -49,24 +49,27 @@ export class PacienteService {
 
     // Llamamos los datos desde Firebase e iteramos los datos con data.ForEach y por
     // último pasamos los datos a JSON
-    let tempPaciente : Paciente = {id: 1,name: "Vacio"};
+    
     
     this.itemsRef.snapshotChanges().subscribe(data => { 
       this.Dato = [];
       //console.log("-Dato-");
       //console.log(data.length);
       data.forEach(item => {
+        let tempPaciente : Paciente = {id: 1,name: "Vacio"};
         // console.log("-Dato-2");
         tempPaciente.id = 1;
         tempPaciente.name = item.payload;
         //let a = item.payload.toJSON(); 
         //a['$key'] = item.key;
         this.Dato.push(tempPaciente as Paciente);
+        console.log(tempPaciente);
+        console.log(this.Dato.length);
       })
     })
 
     
-    console.log(this.Dato)
+    console.log(this.Dato);
 
       
 
