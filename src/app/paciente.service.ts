@@ -40,7 +40,7 @@ export class PacienteService {
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
 
-   Dato : Paciente[];
+   Dato : Paciente[] = [];
 
   constructor(private messageService: MessageService, public afd: AngularFireDatabase) {
     this.itemsRef = afd.list('Usuarios');
@@ -75,28 +75,37 @@ export class PacienteService {
 
       
 
-/*
-    this.items = this.itemsRef.snapshotChanges().map(changes => {
-      console.log(changes)
-      for (let elemento in changes)
-      {
-        console.log("Elemento");
-        console.log(elemento);
-      }
-    });*/
+
    }
 
-  getPacientes(): Observable<Paciente[]> {
+  getPacientes(public afd: AngularFireDatabase): Observable<Paciente[]> {
     // TODO: send the message _after_ fetching the heroes
     this.messageService.add('PacienteService: fetched pacientes');
-    return of(PACIENTES);
-
+    //return of(PACIENTES);
+    // Use snapshotChanges().map() to store the key
+    console.log("Listado");
+    this.itemsRef=this.afd.list('/Usuarios');
+    this.itemsRef.snapshotChanges().subscribe(data => { 
+      this.Dato = [];
+      var contador:integer = 0;
+      data.forEach(item => {
+        let tempPaciente : Paciente = {id: 1,name: "Vacio"};
+        contador = contador + 1;
+        tempPaciente.id = contador;
+        tempPaciente.name = item.payload.val();
+        this.Dato.push(tempPaciente as Paciente);
+      })
+      console.log(this.Dato.length);
+    })
+    return of(this.Dato);
+   
   }
 
   getPaciente(id: number): Observable<Paciente> {
   // TODO: send the message _after_ fetching the hero
   this.messageService.add(`PacienteService: fetched paciente id=${id}`);
-  return of(PACIENTES.find(paciente => paciente.id === id));
+  //return of(PACIENTES.find(paciente => paciente.id === id));
+  return of(this.Dato.find(paciente => paciente.id === id));
   }
 
 
