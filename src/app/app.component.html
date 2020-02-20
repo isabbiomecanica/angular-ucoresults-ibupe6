@@ -1,4 +1,13 @@
 <h1>{{title}}</h1>
+
+  
+<nav>
+  <a routerLink="/dashboard-paciente">Dashboard</a>
+  <a routerLink="/pacientes">Pacientes</a>
+</nav>
+<router-outlet></router-outlet>
+<app-messages></app-messages>
+
 Usuarios<p>
 <ul>
   <li class="text" *ngFor="let item of items | async">
@@ -6,10 +15,4 @@ Usuarios<p>
     
   </li>
 </ul>
-Fin Usuarios<p>
-<nav>
-  <a routerLink="/dashboard-paciente">Dashboard</a>
-  <a routerLink="/pacientes">Pacientes</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+Fin Usuarios<p> 
